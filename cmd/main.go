@@ -1,8 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"danielsaisani/cmd/api"
+	"danielsaisani/cmd/service"
+	"danielsaisani/pkg/clock"
+
+	"go.uber.org/fx"
+)
 
 func main() {
-	// TODO: wire stuffs together with FX.
-	fmt.Println("Hello, World!")
+	fx.New(
+		fx.Provide(
+			clock.New,
+			service.New,
+			api.New,
+		),
+	)
 }
